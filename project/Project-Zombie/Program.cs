@@ -328,7 +328,7 @@
 
                     default:
                         Console.WriteLine($"{surv.getName()} continues their search as they notice some slight, shambling footsteps nearby." +
-                            $" Suddenly, a zombie appears    from the darkness. What will {surv.getName()} do?\n" +
+                            $" Suddenly, a zombie appears from the darkness. What will {surv.getName()} do?\n" +
                             $"1 - Fight back, {surv.getName()} won't go down without a fight.\n" +
                             $"2 - Run. No point in taking an unneccessary risk.\n" +
                             $"3 - Shoot, play it safe, but make an effort to put them down.");
