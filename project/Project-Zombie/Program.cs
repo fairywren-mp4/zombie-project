@@ -137,7 +137,7 @@
 
                     case 1:
                         Console.WriteLine($"{surv.getName()} continues walking as a flurry of small groans appear from the darkness. Step by step, they" +
-                            $"get louder, and louder, until suddenly a horde of zombies emerge. What should {surv.getName()} do?\n" +
+                            $" get louder, and louder, until suddenly a horde of zombies emerge. What should {surv.getName()} do?\n" +
                             $"1 - Fight back, {surv.getName()} won't go down without a fight.\n" +
                             $"2 - Run. No point in taking an unneccessary risk.\n" +
                             $"3 - Shoot, play it safe, but make an effort to put them down.");
@@ -184,6 +184,16 @@
                         }
                         break;
 
+                    case 2:
+                        Console.WriteLine($"{surv.getName()} walks further as a deep, putrid smell consumes the room. In the distance, a" +
+                            $"strange lump. At closer look, {surv.getName}'s fears become true: a pile of bodies covered in dried blood.");
+                        surv.changeCom(-5);
+                        if (surv.getCom() == 0)
+                        {
+                            return;
+                        }
+                        break;
+
                 }
 
                 map[location[0], location[1]] = -1;
@@ -194,22 +204,35 @@
                 if (location[0] == 0 && location[1] == 0)
                 {
                     move = Movement("EAST", "SOUTH");
-                } else if (location[0] == 5 && location[1] == 5)
+                }
+                else if (location[0] == 4 && location[1] == 4)
                 {
                     move = Movement("NORTH", "WEST");
-                } else if (location[0] == 0)
+                }
+                else if (location[0] == 0 && location[1] == 4)
+                {
+                    move = Movement("SOUTH", "WEST");
+                } else if (location[0] == 4 && location[1] == 0)
+                {
+                    move = Movement("NORTH", "EAST");
+                }
+                else if (location[0] == 0)
                 {
                     move = Movement("EAST", "SOUTH", "WEST");
-                } else if (location[1] == 0)
+                }
+                else if (location[1] == 0)
                 {
                     move = Movement("NORTH", "EAST", "SOUTH");
-                } else if (location[0] == 5)
+                }
+                else if (location[0] == 4)
                 {
                     move = Movement("NORTH", "EAST", "WEST");
-                } else if (location[1] == 5)
+                }
+                else if (location[1] == 4)
                 {
                     move = Movement("NORTH", "SOUTH", "WEST");
-                } else
+                }
+                else
                 {
                     move = Movement("NORTH", "EAST", "SOUTH", "WEST");
                 }

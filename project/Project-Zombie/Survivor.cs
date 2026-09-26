@@ -82,7 +82,16 @@ namespace Project_Zombie
 
         public void changeCom(int value)
         {
-            com += value;
+            if (com + value <= 20 || com - value >= 0)
+            {
+                com += value;
+            } else if (value > 0)
+            {
+                com = 20;
+            } else
+            {
+                com = 0;
+            }
         }
 
         public void Kill()
