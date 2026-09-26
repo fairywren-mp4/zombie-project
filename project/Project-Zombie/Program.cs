@@ -284,8 +284,8 @@
 
                     case 6:
                         Console.WriteLine($"{surv.getName()} hears an explosion in the distance. Carefully approaching it, they" +
-                            $"find an injured survivor next to a burning vehicle. They try to get the survivor to come with them," +
-                            $"but the survivor seems hesitant. What should {surv.getName()} do?\n " +
+                            $"find an injured survivor next to a burning        vehicle. They try to get the survivor to come with them," +
+                            $"but the survivor seems hesitant. What should {surv.getName()} do?\n" +
                             $"1 - Treat the survivor with kindess. Allies are important.\n" +
                             $"2 - Convince the survivor to come with you logically. A community always beats going alone.\n" +
                             $"3 - Use their injured state against them, carry them with you forcefully.");
@@ -328,7 +328,7 @@
 
                     default:
                         Console.WriteLine($"{surv.getName()} continues their search as they notice some slight, shambling footsteps nearby." +
-                            $" Suddenly, a zombie appears from the darkness. What will {surv.getName()} do?\n" +
+                            $" Suddenly, a zombie appears    from the darkness. What will {surv.getName()} do?\n" +
                             $"1 - Fight back, {surv.getName()} won't go down without a fight.\n" +
                             $"2 - Run. No point in taking an unneccessary risk.\n" +
                             $"3 - Shoot, play it safe, but make an effort to put them down.");
