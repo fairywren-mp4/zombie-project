@@ -1,0 +1,16 @@
+C:\Users\pauri\Documents\zombie-project\project\Project-Zombie\bin\Debug\net10.0\Project-Zombie.exe
+C:\Users\pauri\Documents\zombie-project\project\Project-Zombie\bin\Debug\net10.0\Project-Zombie.deps.json
+C:\Users\pauri\Documents\zombie-project\project\Project-Zombie\bin\Debug\net10.0\Project-Zombie.runtimeconfig.json
+C:\Users\pauri\Documents\zombie-project\project\Project-Zombie\bin\Debug\net10.0\Project-Zombie.dll
+C:\Users\pauri\Documents\zombie-project\project\Project-Zombie\bin\Debug\net10.0\Project-Zombie.pdb
+C:\Users\pauri\Documents\zombie-project\project\Project-Zombie\obj\Debug\net10.0\Project-Zombie.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pauri\Documents\zombie-project\project\Project-Zombie\obj\Debug\net10.0\Project-Zombie.AssemblyInfoInputs.cache
+C:\Users\pauri\Documents\zombie-project\project\Project-Zombie\obj\Debug\net10.0\Project-Zombie.AssemblyInfo.cs
+C:\Users\pauri\Documents\zombie-project\project\Project-Zombie\obj\Debug\net10.0\Project-Zombie.csproj.CoreCompileInputs.cache
+C:\Users\pauri\Documents\zombie-project\project\Project-Zombie\obj\Debug\net10.0\Project-Zombie.sourcelink.json
+C:\Users\pauri\Documents\zombie-project\project\Project-Zombie\obj\Debug\net10.0\Project-Zombie.dll
+C:\Users\pauri\Documents\zombie-project\project\Project-Zombie\obj\Debug\net10.0\refint\Project-Zombie.dll
+C:\Users\pauri\Documents\zombie-project\project\Project-Zombie\obj\Debug\net10.0\Project-Zombie.pdb
+C:\Users\pauri\Documents\zombie-project\project\Project-Zombie\obj\Debug\net10.0\Project-Zombie.genruntimeconfig.cache
+C:\Users\pauri\Documents\zombie-project\project\Project-Zombie\obj\Debug\net10.0\ref\Project-Zombie.dll
+C:\Users\pauri\Documents\zombie-project\project\Project-Zombie\obj\Debug\net10.0\Project-.045F2A41.Up2Date
