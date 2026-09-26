@@ -8,19 +8,24 @@
     "net10.0": []
   },
   "packageFolders": {
-    "C:\\Users\\pauri\\.nuget\\packages\\": {}
+    "C:\\Users\\rhaug\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pauri\\Documents\\zombie-project\\project\\Project-Zombie\\Project-Zombie.csproj",
+      "projectUniqueName": "C:\\Users\\rhaug\\Desktop\\folder of code\\Hackathons\\zombie-project\\project\\Project-Zombie\\Project-Zombie.csproj",
       "projectName": "Project-Zombie",
-      "projectPath": "C:\\Users\\pauri\\Documents\\zombie-project\\project\\Project-Zombie\\Project-Zombie.csproj",
-      "packagesPath": "C:\\Users\\pauri\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pauri\\Documents\\zombie-project\\project\\Project-Zombie\\obj\\",
+      "projectPath": "C:\\Users\\rhaug\\Desktop\\folder of code\\Hackathons\\zombie-project\\project\\Project-Zombie\\Project-Zombie.csproj",
+      "packagesPath": "C:\\Users\\rhaug\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\rhaug\\Desktop\\folder of code\\Hackathons\\zombie-project\\project\\Project-Zombie\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\pauri\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\rhaug\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

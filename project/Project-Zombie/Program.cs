@@ -4,6 +4,7 @@ namespace Project_Zombie
 {
     internal class Program
     {
+        //skibidi toilet skibidi skibidi toilet
         static void Main(string[] args)
         {
             string[] survs = new string[10];
