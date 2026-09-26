@@ -250,7 +250,7 @@
 
                     case 5:
                         Console.WriteLine($"{surv.getName()} comes upon a boarded up house, the rudimentary plank barricades slipping" +
-                            $" off the front door just enough to get   past. What should {surv.getName()} do?\n" +
+                            $" off the front door just enough to get past. What should {surv.getName()} do?\n" +
                             $"1 - Enter the house, keeping an eye out for danger\n" +
                             $"2 - There is no point in unneccesary risk.");
                         choice = MakeChoice();
@@ -276,7 +276,7 @@
                             } else
                             {
                                 Console.WriteLine($"{surv.getName()} carefully steps through the house, attempting to avoid the rotting" +
-                                    $"floor boards. Inside, they find a book that    improves their faith in the world!");
+                                    $"floor boards. Inside, they find a book that improves their faith in the world!");
                                 surv.changeKin(2);
                             }
                         }
@@ -284,7 +284,7 @@
 
                     case 6:
                         Console.WriteLine($"{surv.getName()} hears an explosion in the distance. Carefully approaching it, they" +
-                            $"find an injured survivor next to a burning        vehicle. They try to get the survivor to come with them," +
+                            $"find an injured survivor next to a burning vehicle. They try to get the survivor to come with them," +
                             $"but the survivor seems hesitant. What should {surv.getName()} do?\n" +
                             $"1 - Treat the survivor with kindess. Allies are important.\n" +
                             $"2 - Convince the survivor to come with you logically. A community always beats going alone.\n" +
