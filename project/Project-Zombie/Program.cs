@@ -23,7 +23,7 @@
             while (Survivor.getCastSize() != 0)
             {
                 Console.WriteLine();
-                Console.Write("The survivors feel ready for an expedition, who will you send out? ");
+                Console.Write("A few days have passed. The survivors feel ready for an expedition. Who will you send out? ");
 
                 while (true)
                 {
@@ -114,15 +114,19 @@
 
         public static void Expedition(Survivor surv)
         {
+            Random rng = new Random();
+            
             int[,] map = GenerateMap();
             int[] location = [0, 0];
             int events = map[0, 0];
             int time = 1;
+            int roll = 0;
+            int choice = 0;
 
             Console.WriteLine();
             Console.WriteLine($"{surv.getName()} arrives at the destination.");
 
-            while (time > 0)
+            while (time > 0 || surv.getCom() == 0)
             {
                 string move;
                 switch (events)
@@ -131,11 +135,58 @@
                         Console.WriteLine("A moment of respite. This spot is quiet, for now.");
                         break;
 
-                    default:
-                        Console.WriteLine("Unadded for now");
+                    case 1:
+                        Console.WriteLine($"{surv.getName()} continues walking as a flurry of small groans appear from the darkness. Step by step, they" +
+                            $"get louder, and louder, until suddenly a horde of zombies emerge. What should {surv.getName()} do?\n" +
+                            $"1 - Fight back, {surv.getName()} won't go down without a fight.\n" +
+                            $"2 - Run. No point in taking an unneccessary risk.\n" +
+                            $"3 - Shoot, play it safe, but make an effort to put them down.");
+                        choice = MakeChoice();
+                        roll = rng.Next(1, 21);
+                        if (choice == 1)
+                        {
+                            roll += surv.getBonus(surv.getStr());
+                        } else if (choice == 2)
+                        {
+                            roll += surv.getBonus(surv.getAgi());
+                        } else
+                        {
+                            roll += surv.getBonus(surv.getPer());
+                        }
+
+                        if (roll <= 7)
+                        {
+                            Console.WriteLine("The survivor's attempts are in vain. They are consumed by the horde.");
+                            surv.Kill();
+                            return;
+                        } else if (roll < 13 && surv.getEnd() > 2)
+                        {
+                            Console.WriteLine("The survivor is wounded, but escapes with their life.");
+                            surv.changeEnd(-2);
+                            surv.changeCom(-5);
+                            if (surv.getCom() == 0)
+                            {
+                                return;
+                            }
+                        } else if (roll < 13)
+                        {
+                            Console.WriteLine($"{surv.getName()} is wounded escaping the horde. Their wounds are too much to bare and they slowly lose consciousness.");
+                            surv.Kill();
+                            return;
+                        } else
+                        {
+                            Console.WriteLine($"The zombie numbers trickle down, soon, {surv.getName()} finds themselves alone again, safe.");
+                            surv.changeCom(-4);
+                            if (surv.getCom() == 0)
+                            {
+                                return;
+                            }
+                        }
                         break;
 
                 }
+
+                map[location[0], location[1]] = -1;
 
                 Console.WriteLine();
                 Console.Write($"Where should {surv.getName()} go next? ");
@@ -162,6 +213,22 @@
                 {
                     move = Movement("NORTH", "EAST", "SOUTH", "WEST");
                 }
+
+                if (move == "NORTH")
+                {
+                    location[0] -= 1;
+                } else if (move == "EAST")
+                {
+                    location[1] += 1;
+                } else if (move == "SOUTH")
+                {
+                    location[0] += 1;
+                } else
+                {
+                    location[1] -= 1;
+                }
+
+                events = map[location[0], location[1]];
             }
         }
 
@@ -175,7 +242,7 @@
         {
             while (true)
             {
-                Console.Write($"Valid options are {valid1} and {valid2}");
+                Console.Write($"Valid options are {valid1} and {valid2}: ");
                 string result = Console.ReadLine()!.Trim().ToUpper();
 
                 if (result == valid1 || result == valid2)
@@ -193,7 +260,7 @@
         {
             while (true)
             {
-                Console.Write($"Valid options are {valid1}, {valid2}, and {valid3}");
+                Console.Write($"Valid options are {valid1}, {valid2}, and {valid3}: ");
                 string result = Console.ReadLine()!.Trim().ToUpper();
 
                 if (result == valid1 || result == valid2 || result == valid3)
@@ -211,16 +278,35 @@
         {
             while (true)
             {
-                Console.Write($"Valid options are {valid1}, {valid2}, {valid3}, and {valid4}");
+                Console.Write($"Valid options are {valid1}, {valid2}, {valid3}, and {valid4}: ");
                 string result = Console.ReadLine()!.Trim().ToUpper();
 
                 if (result == valid1 || result == valid2 || result == valid3 || result == valid4)
                 {
-                    return result;
+                    return result; 
                 }
                 else
                 {
                     Console.WriteLine("Invalid Entry. ");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Loops until the user enters a valid choice to the prompted question
+        /// </summary>
+        /// <returns>The user's choice</returns>
+        public static int MakeChoice()
+        {
+            while(true)
+            {
+                int input = int.Parse(Console.ReadLine()!.Trim());
+                if (input == 1 || input == 2 || input == 3)
+                {
+                    return input;
+                } else
+                {
+                    Console.WriteLine("Invalid Entry.");
                 }
             }
         }
