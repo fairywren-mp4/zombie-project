@@ -4,11 +4,7 @@
     {
         static void Main(string[] args)
         {
-            //Initialize Variables
-            string[] survs = new string[10];
-            int[][] statBlock = new int[10][];
-
-            int castSize = 0;
+            Survivor[] survs = new Survivor[10];
 
             //Introduce story and generate starter characters
             Console.WriteLine("The world has ended, but you have not. 5 survivors remain in a world completely against them.");
@@ -16,16 +12,33 @@
             for (int i = 0; i <= 4; i++)
             {
                 Console.Write("Enter A Name: ");
-                survs[i] = Console.ReadLine()!.Trim().ToUpper();
-                statBlock[i] = GenerateCharacter();
-                castSize++;
+                string name = Console.ReadLine()!.Trim().ToUpper();
+                int[] stats = GenerateCharacter();
+                Survivor surv = new Survivor(stats[0], stats[1], stats[2], stats[3], stats[4], stats[5], stats[6], name);
+                survs[i] = surv;
             }
 
-            PrintCast(survs, statBlock);
+            PrintCast(survs);
 
-            while (castSize != 0)
+            while (Survivor.getCastSize() != 0)
             {
+                Console.WriteLine();
+                Console.Write("The survivors feel ready for an expedition, who will you send out? ");
 
+                while (true)
+                {
+                    string adventurer = Console.ReadLine()!.Trim().ToUpper();
+                    for (int i = 0; i < Survivor.getCastSize(); i++)
+                    {
+                        if (adventurer == survs[i].getName())
+                        {
+                            Console.WriteLine($"{adventurer} will go out!");
+                            Expedition(survs[i]);
+                            return;
+                        } 
+                    }
+                    Console.WriteLine("Invalid Entry.");
+                }
             }
         }
 
@@ -52,55 +65,26 @@
         /// </summary>
         /// <param name="names">The array containing survivor names</param>
         /// <param name="stats">The array containing survivor stats</param>
-        public static void PrintCast(string[] names, int[][] stats)
+        public static void PrintCast(Survivor[] names)
         {
             Console.WriteLine();
             Console.WriteLine("--- SURVIVOR CAST ---");
+            Console.WriteLine();
             for (int i = 0; i < names.Length; i++)
             {
                 if (names[i] != null)
                 {
                     Console.WriteLine(names[i]);
-
-                    for (int j = 0; j <= 6; j++)
-                    {
-                        switch (j)
-                        {
-                            case 0:
-                                Console.WriteLine($"STR: {stats[i][j]}");
-                                break;
-
-                            case 1:
-                                Console.WriteLine($"AGI: {stats[i][j]}");
-                                break;
-
-                            case 2:
-                                Console.WriteLine($"PRE: {stats[i][j]}");
-                                break;
-
-                            case 3:
-                                Console.WriteLine($"COM: {stats[i][j]}");
-                                break;
-
-                            case 4:
-                                Console.WriteLine($"INT: {stats[i][j]}");
-                                break;
-
-                            case 5:
-                                Console.WriteLine($"KIN: {stats[i][j]}");
-                                break;
-
-                            case 6:
-                                Console.WriteLine($"END: {stats[i][j]}");
-                                break;
-                        }
-                    }
                     Console.WriteLine();
                 }
             }
         }
 
-        public static int[,] GenerateMap()
+        /// <summary>
+        /// Randomly generates a map for use in expeditions
+        /// </summary>
+        /// <returns>The generated map</returns>
+        private static int[,] GenerateMap()
         {
             Random rng = new Random();
             
@@ -121,17 +105,124 @@
                     if (map[k, l] == 1)
                     {
                         map[k, l] = rng.Next(1, 10);
-                    }
+                    } 
                 }
             }
 
             return map;
         }
 
-        public static void Expedition(string name, int[] stats)
+        public static void Expedition(Survivor surv)
         {
             int[,] map = GenerateMap();
-            
+            int[] location = [0, 0];
+            int events = map[0, 0];
+            int time = 1;
+
+            Console.WriteLine();
+            Console.WriteLine($"{surv.getName()} arrives at the destination.");
+
+            while (time > 0)
+            {
+                string move;
+                switch (events)
+                {
+                    case 0:
+                        Console.WriteLine("A moment of respite. This spot is quiet, for now.");
+                        break;
+
+                    default:
+                        Console.WriteLine("Unadded for now");
+                        break;
+
+                }
+
+                Console.WriteLine();
+                Console.Write($"Where should {surv.getName()} go next? ");
+
+                if (location[0] == 0 && location[1] == 0)
+                {
+                    move = Movement("EAST", "SOUTH");
+                } else if (location[0] == 5 && location[1] == 5)
+                {
+                    move = Movement("NORTH", "WEST");
+                } else if (location[0] == 0)
+                {
+                    move = Movement("EAST", "SOUTH", "WEST");
+                } else if (location[1] == 0)
+                {
+                    move = Movement("NORTH", "EAST", "SOUTH");
+                } else if (location[0] == 5)
+                {
+                    move = Movement("NORTH", "EAST", "WEST");
+                } else if (location[1] == 5)
+                {
+                    move = Movement("NORTH", "SOUTH", "WEST");
+                } else
+                {
+                    move = Movement("NORTH", "EAST", "SOUTH", "WEST");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Prompts the user for a movement option and loops until a valid option is returned. 
+        /// </summary>
+        /// <param name="valid1"> Valid Option</param>
+        /// <param name="valid2"> Valid Option</param>
+        /// <returns>The User's choice</returns>
+        private static string Movement(string valid1, string valid2)
+        {
+            while (true)
+            {
+                Console.Write($"Valid options are {valid1} and {valid2}");
+                string result = Console.ReadLine()!.Trim().ToUpper();
+
+                if (result == valid1 || result == valid2)
+                {
+                    return result;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid Entry. ");
+                }
+            }
+        }
+
+        private static string Movement(string valid1, string valid2, string valid3)
+        {
+            while (true)
+            {
+                Console.Write($"Valid options are {valid1}, {valid2}, and {valid3}");
+                string result = Console.ReadLine()!.Trim().ToUpper();
+
+                if (result == valid1 || result == valid2 || result == valid3)
+                {
+                    return result;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid Entry. ");
+                }
+            }
+        }
+
+        private static string Movement(string valid1, string valid2, string valid3, string valid4)
+        {
+            while (true)
+            {
+                Console.Write($"Valid options are {valid1}, {valid2}, {valid3}, and {valid4}");
+                string result = Console.ReadLine()!.Trim().ToUpper();
+
+                if (result == valid1 || result == valid2 || result == valid3 || result == valid4)
+                {
+                    return result;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid Entry. ");
+                }
+            }
         }
     }
 }
