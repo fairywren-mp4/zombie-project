@@ -69,6 +69,16 @@ namespace Project_Zombie
             return end;
         }
 
+        public int getInt()
+        {
+            return inte;
+        }
+
+        public int getKin()
+        {
+            return kin;
+        }
+
         public void changeEnd(int value)
         {
             if (end + value <= 20 || end - value >= 0)
@@ -91,6 +101,30 @@ namespace Project_Zombie
             } else
             {
                 com = 0;
+            }
+        }
+
+        public void changeKin(int value)
+        {
+            if (kin + value <= 20 || kin - value >= 0)
+            {
+                kin += value;
+            }
+            else if (value > 0)
+            {
+                kin = 20;
+            }
+            else
+            {
+                kin = 0;
+            }
+        }
+
+        public static void changeCastSize()
+        {
+            if (castSize < 10)
+            {
+                castSize++;
             }
         }
 

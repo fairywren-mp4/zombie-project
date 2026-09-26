@@ -159,10 +159,10 @@
                             Console.WriteLine("The survivor's attempts are in vain. They are consumed by the horde.");
                             surv.Kill();
                             return;
-                        } else if (roll < 13 && surv.getEnd() > 2)
+                        } else if (roll < 13 && surv.getEnd() > 5)
                         {
                             Console.WriteLine("The survivor is wounded, but escapes with their life.");
-                            surv.changeEnd(-2);
+                            surv.changeEnd(-5);
                             surv.changeCom(-5);
                             if (surv.getCom() == 0)
                             {
@@ -194,6 +194,191 @@
                         }
                         break;
 
+                    case 3:
+                        Console.WriteLine($"{surv.getName()} continues their search as they notice some slight, shambling footsteps nearby." +
+                            $"Suddenly, three zombies appear from the darkness. What will {surv.getName()} do?\n" +
+                            $"1 - Fight back, {surv.getName()} won't go down without a fight.\n" +
+                            $"2 - Run. No point in taking an unneccessary risk.\n" +
+                            $"3 - Shoot, play it safe, but make an effort to put them down.");
+                        choice = MakeChoice();
+                        roll = rng.Next(1, 21);
+                        if (choice == 1)
+                        {
+                            roll += surv.getBonus(surv.getStr());
+                        }
+                        else if (choice == 2)
+                        {
+                            roll += surv.getBonus(surv.getAgi());
+                        }
+                        else
+                        {
+                            roll += surv.getBonus(surv.getPer());
+                        }
+
+                        if (roll <= 4)
+                        {
+                            Console.WriteLine("The survivor's attempts are in vain. They are consumed by the group.");
+                            surv.Kill();
+                            return;
+                        }
+                        else if (roll < 12 && surv.getEnd() > 2)
+                        {
+                            Console.WriteLine("The survivor is wounded, but escapes with their life.");
+                            surv.changeEnd(-2);
+                            surv.changeCom(-4);
+                            if (surv.getCom() == 0)
+                            {
+                                return;
+                            }
+                        }
+                        else if (roll < 12)
+                        {
+                            Console.WriteLine($"{surv.getName()} is wounded escaping the group. Their wounds are too much to bare and they slowly lose consciousness.");
+                            surv.Kill();
+                            return;
+                        }
+                        else
+                        {
+                            Console.WriteLine($"The zombie numbers trickle down, soon, {surv.getName()} finds themselves alone again, safe.");
+                            surv.changeCom(-2);
+                            if (surv.getCom() == 0)
+                            {
+                                return;
+                            }
+                        }
+                        break;
+
+                    default:
+                        Console.WriteLine($"{surv.getName()} continues their search as they notice some slight, shambling footsteps nearby." +
+                            $"Suddenly, a zombie appears from the darkness. What will {surv.getName()} do?\n" +
+                            $"1 - Fight back, {surv.getName()} won't go down without a fight.\n" +
+                            $"2 - Run. No point in taking an unneccessary risk.\n" +
+                            $"3 - Shoot, play it safe, but make an effort to put them down.");
+                        choice = MakeChoice();
+                        roll = rng.Next(1, 21);
+                        if (choice == 1)
+                        {
+                            roll += surv.getBonus(surv.getStr());
+                        }
+                        else if (choice == 2)
+                        {
+                            roll += surv.getBonus(surv.getAgi());
+                        }
+                        else
+                        {
+                            roll += surv.getBonus(surv.getPer());
+                        }
+
+                        if (roll <= 1)
+                        {
+                            Console.WriteLine("The survivor's attempts are in vain. They zombie pounces onto them and consumes them completely.");
+                            surv.Kill();
+                            return;
+                        }
+                        else if (roll < 10 && surv.getEnd() > 1)
+                        {
+                            Console.WriteLine("The survivor is wounded, but escapes with their life.");
+                            surv.changeEnd(-1);
+                            surv.changeCom(-2);
+                            if (surv.getCom() == 0)
+                            {
+                                return;
+                            }
+                        }
+                        else if (roll < 10)
+                        {
+                            Console.WriteLine($"{surv.getName()} is wounded escaping the zombie. Their wounds are too much to bare and they slowly lose consciousness.");
+                            surv.Kill();
+                            return;
+                        }
+                        else
+                        {
+                            Console.WriteLine($"The zombie is only a slight road block. Soon, {surv.getName()} finds themselves alone again, safe.");
+                            surv.changeCom(-1);
+                            if (surv.getCom() == 0)
+                            {
+                                return;
+                            }
+                        }
+                        break;
+
+                    case 5:
+                        Console.WriteLine($"{surv.getName()} comes upon a boarded up house, the rudimentary plank barricades slipping" +
+                            $"off the front door just enough to get past. What should {surv.getName()} do?\n" +
+                            $"1 - Enter the house, keeping an eye out for danger\n" +
+                            $"2 - There is no point in unneccesary risk.");
+                        choice = MakeChoice();
+                        roll = rng.Next(1, 21);
+                        if (choice == 1)
+                        {
+                            roll += surv.getBonus(surv.getInt());
+                            if (roll <= 10 && surv.getEnd() > 2)
+                            {
+                                Console.WriteLine($"{surv.getName} enters the home, completely unaware of the rotting planks beneath them. " +
+                                    $"They fall through, getting slightly scratched up.");
+                                surv.changeEnd(-2);
+                                surv.changeCom(-2);
+                                if (surv.getCom() == 0)
+                                {
+                                    return;
+                                }
+                            } else if (roll <= 10)
+                            {
+                                Console.WriteLine($"{surv.getName} enters the home, completely unaware of the rotting planks beneath them. " +
+                                    $"They fall through, hitting the ground hard, and never getting back up.");
+                                surv.Kill();
+                            } else
+                            {
+                                Console.WriteLine($"{surv.getName()} carefully steps through the house, attempting to avoid the rotting" +
+                                    $"floor boards. Inside, they find a book that improves their faith in the world!");
+                                surv.changeKin(2);
+                            }
+                        }
+                        break;
+
+                    case 6:
+                        Console.WriteLine($"{surv.getName()} hears an explosion in the distance. Carefully approaching it, they" +
+                            $"find an injured survivor next to a burning vehicle. They try to get the survivor to come with them," +
+                            $"but the survivor seems hesitant. What should {surv.getName()} do?\n " +
+                            $"1 - Treat the survivor with kindess. Allies are important.\n" +
+                            $"2 - Convince the survivor to come with you logically. A community always beats going alone.\n" +
+                            $"3 - Use their injured state against them, carry them with you forcefully.");
+                        choice = MakeChoice();
+                        roll = rng.Next(1, 21);
+                        if (choice == 1)
+                        {
+                            roll += surv.getBonus(surv.getKin());
+                        } else if (choice == 2)
+                        {
+                            roll += surv.getBonus(surv.getInt());
+                        } else
+                        {
+                            roll += surv.getBonus(surv.getStr());
+                        }
+
+                        if (roll <= 5 && surv.getEnd() > 3)
+                        {
+                            Console.WriteLine($"The survivor is frightened by your attempts, attacking {surv.getName()} before they limp away.");
+                            surv.changeEnd(-3);
+                            surv.changeCom(-4);
+                            if (surv.getCom() == 0)
+                            {
+                                return;
+                            }
+                        } else if (roll <= 5)
+                        {
+                            Console.WriteLine($"The survivor is frightened by your attempts, attacking {surv.getName()}. Before they can react, they succumb to their wounds.");
+                            surv.Kill();
+                        } else if (roll <= 10)
+                        {
+                            Console.WriteLine("The survivor is unconvinced, escaping into the nearby woods.");
+                        } else
+                        {
+                            Console.WriteLine("The survivor comes with you, resisting very little");
+                            Survivor.changeCastSize();
+                            return;
+                        }
+                        break;
                 }
 
                 map[location[0], location[1]] = -1;
